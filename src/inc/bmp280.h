@@ -6,12 +6,17 @@
  * The MIT License (MIT)
  * Copyright (c) 2016 sheinz (https://github.com/sheinz)
  */
+#pragma once
 #ifndef __BMP280_H__
 #define __BMP280_H__
 
 #include "stm32f1xx_hal.h"
 #include <stdint.h>
 #include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * BMP280 or BME280 address is 0x77 if SDO pin is high, and is 0x76 if
@@ -85,33 +90,33 @@ typedef struct {
 
 typedef struct {
     uint16_t dig_T1;
-    int16_t  dig_T2;
-    int16_t  dig_T3;
+    int16_t dig_T2;
+    int16_t dig_T3;
     uint16_t dig_P1;
-    int16_t  dig_P2;
-    int16_t  dig_P3;
-    int16_t  dig_P4;
-    int16_t  dig_P5;
-    int16_t  dig_P6;
-    int16_t  dig_P7;
-    int16_t  dig_P8;
-    int16_t  dig_P9;
+    int16_t dig_P2;
+    int16_t dig_P3;
+    int16_t dig_P4;
+    int16_t dig_P5;
+    int16_t dig_P6;
+    int16_t dig_P7;
+    int16_t dig_P8;
+    int16_t dig_P9;
 
     /* Humidity compensation for BME280 */
-    uint8_t  dig_H1;
-    int16_t  dig_H2;
-    uint8_t  dig_H3;
-    int16_t  dig_H4;
-    int16_t  dig_H5;
-    int8_t   dig_H6;
+    uint8_t dig_H1;
+    int16_t dig_H2;
+    uint8_t dig_H3;
+    int16_t dig_H4;
+    int16_t dig_H5;
+    int8_t dig_H6;
 
     uint16_t addr;
 
-    I2C_HandleTypeDef* i2c;
+    I2C_HandleTypeDef *i2c;
 
     bmp280_params_t params;
 
-    uint8_t  id;        /* Chip ID */
+    uint8_t id;        /* Chip ID */
 
 } BMP280_HandleTypedef;
 
@@ -174,5 +179,8 @@ bool bmp280_read_fixed(BMP280_HandleTypedef *dev, int32_t *temperature,
 bool bmp280_read_float(BMP280_HandleTypedef *dev, float *temperature,
                        float *pressure, float *humidity);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // __BMP280_H__
