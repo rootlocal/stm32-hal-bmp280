@@ -28,8 +28,9 @@ int main(void){
             // ... 
             HAL_Delay(2000);
         }
-
-        sprintf(buf, "P: %.2f Pa\nTemp: %.2f C", pressure, temperature);
+        
+        double pressure_mmHg = (pressure * 0.00750062); ///< convert Pa to mmHg
+        sprintf(buf, "P: %.2f mmHg\nTemp: %.2f C", pressure_mmHg, temperature);
         // ...
 
         if (bme280p) {

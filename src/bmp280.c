@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 
-#include "bmp280.h"
+#include "inc/bmp280.h"
 
 /**
  * BMP280 registers
@@ -333,7 +333,7 @@ bool bmp280_read_fixed(BMP280_HandleTypedef *dev, int32_t *temperature, uint32_t
 bool bmp280_read_float(BMP280_HandleTypedef *dev, float *temperature, float *pressure,
                        float *humidity) {
     int32_t fixed_temperature;
-    uint32_t fixed_pressure;
+    uint32_t fixed_pressure; ///< pressure PA double pressure_mmHg = (pressure * 0.00750062)
     uint32_t fixed_humidity;
     if (bmp280_read_fixed(dev, &fixed_temperature, &fixed_pressure,
                           humidity ? &fixed_humidity : NULL)) {
